@@ -1,6 +1,10 @@
 Changes
+Build.PL
 Makefile.PL
+META.yml
 MANIFEST
 README
-Stream.pm
-test.pl
+lib/CGI/Application/Plugin/Stream.pm
+t/basic.t
+t/test_file_to_stream.txt
+t/lib/TieOut.pm

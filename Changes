@@ -1,8 +1,24 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.00  Mon Dec  6 14:26:17 2004
+    The use of the second argument to stream_file() has changed and is not
+    backward compatible.
+
+    [ENHANCEMENTS]
+    - header_props() and header_add() can now be used to manage headers
+    - The right content type will now attempt to be auto-detected if none is
+      provided.
+    - The chunk size of the stream is now configurable. 
+
+    [INTERNALS]
+    - A test suite was added.
+    - started Exporter import technique is used now.
+    - Documentation was updated
+    - Test::More, File::MMagic and FileHandle are now required. 
+    - Migrate distribution management to Module::Build
+
 1.00  Thu Dec  3 10:42:04 2004
 	- production version
-
 
 0.01  Thu Dec  2 16:07:45 2004
 	- original version; created by h2xs 1.21 with options
