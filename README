@@ -1,0 +1,32 @@
+CGI/Application/Plugin/Stream version 1.00
+==========================================
+
+This plugin provides a way to stream a file back to the user from
+within your runmode.  This would be useful if you have a button or
+link on a page somewhere to prompt for a download.  Then when the
+user clicks the link/button, it calls this runmode, which will
+prompt a download session, delivering the file to the user through
+the browser's download functionality.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  File::Basename
+  CGI::Application
+
+COPYRIGHT AND LICENCE
+
+This library is free software. You can modify and or distribute it under the same terms as Perl itself.
+
+Copyright (C) 2004 Jason Purdy (Jason@Purdy.INFO)
+

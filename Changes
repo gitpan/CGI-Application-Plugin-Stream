@@ -1,0 +1,10 @@
+Revision history for Perl extension CGI::Application::Plugin::Stream.
+
+1.00  Thu Dec  3 10:42:04 2004
+	- production version
+
+
+0.01  Thu Dec  2 16:07:45 2004
+	- original version; created by h2xs 1.21 with options
+		-AX -n CGI::Application::Plugin::Stream
+
