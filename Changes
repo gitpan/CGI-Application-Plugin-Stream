@@ -1,5 +1,11 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.01_01 XXX
+    [BUG FIXES]
+    - We now use the correct 'Content-Length' header instead of 'Size'. (Mark Stosberg)
+    - A case in which the first few characters of the file could have been
+      missing after the stream was fixed. (Mark Stosberg) 
+
 2.00  Mon Dec  6 14:26:17 2004
     The use of the second argument to stream_file() has changed and is not
     backward compatible.

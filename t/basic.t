@@ -3,16 +3,10 @@
 
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-#use Test::More qw/no_plan/;
-# The prev. line wouldn't work on my dev machine, so I'm not
-# sure why... this line works, tho:
 use Test::More tests => 15;
 BEGIN {
   use_ok('CGI::Application::Plugin::Stream');
 
-  # Find TieOut;
   unshift @INC, 't/lib';
 }
 
@@ -45,8 +39,8 @@ like($content_sent, qr/Content-Disposition: attachment; filename="FILE"/i,$test_
 $test_name    = 'with fh: Content-type detected correctly by File::MMagic';
 like($content_sent, qr!Content-Type: text/plain!i, $test_name);
 
-$test_name    = 'with fh: correct Size header found';
-like($content_sent, qr/Size: 29/i,$test_name);
+$test_name    = 'with fh: correct Content-Length  header found';
+like($content_sent, qr/Content-Length: 29/i,$test_name);
 
 # Testing with a file
 $app = StreamTest->new();
@@ -59,26 +53,26 @@ like($content_sent, qr/Content-Disposition: attachment; filename="test_file_to_s
 $test_name = 'Content-type detected correctly by File::MMagic';
 like($content_sent, qr!Content-Type: text/plain!i, $test_name);
 
-$test_name = 'correct Size header found';
-like($content_sent, qr/Size: 29/i,$test_name);
+$test_name = 'correct Content-Length header found';
+like($content_sent, qr/Content-Length: 29/i,$test_name);
 
 ###
 
-$test_name = 'Setting a custom size';
+$test_name = 'Setting a custom Content-Length';
 $app = StreamTest->new();
-$app->header_props(size => 1 );
+$app->header_props(Content_Length => 1 );
 $app->with_fh();
 $content_sent = $stdout->read;
-like($content_sent, qr/Size: 1/i,$test_name);
+like($content_sent, qr/Content-Length: 1/i,$test_name);
 
 ###
 
-$test_name = 'Setting a custom -size';
+$test_name = 'Setting a custom -Content-Length';
 $app = StreamTest->new();
-$app->header_props(-size => 4 );
+$app->header_props(-Content_Length => 4 );
 $app->with_fh();
 $content_sent = $stdout->read;
-like($content_sent, qr/Size: 4/i,$test_name);
+like($content_sent, qr/Content-Length: 4/i,$test_name);
 
 ###
 
@@ -127,11 +121,13 @@ like($content_sent, qr/dryer/i,$test_name);
 
 ###
 
-$test_name = 'Setting a explicit byte size at least doesn\'t die';
+$test_name = 'Setting a explicit byte Content-Length at least doesn\'t die';
 $app = StreamTest->new();
 $app->with_bytes();
 $content_sent = $stdout->read;
 like($content_sent, qr/Content-type/i,$test_name);
+
+
 #################
 
 package StreamTest;

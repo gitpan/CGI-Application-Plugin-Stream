@@ -12,35 +12,31 @@ use vars (qw/@ISA @EXPORT_OK/);
 
 @EXPORT_OK = qw(stream_file);
 
-our $VERSION = '2.00';
+our $VERSION = '2.01';
 
 sub stream_file {
     my ( $self, $file_or_fh, $bytes ) = @_;
     $bytes ||= 1024;
-    my ($fh, $basename );
+    my ($fh, $basename);
+    my  $size = (stat( $file_or_fh ))[7];
 
     # If we have a file path
     if ( ref( \$file_or_fh ) eq 'SCALAR' ) {
-        # Use FileHandle to make File::MMagic happy;
-        require FileHandle;
-
-		# They passed along a scalar, pointing to the path of the file
-		# So we need to open the file
-
-        $fh = new FileHandle $file_or_fh,'r'  || return 0;
-
-        #$fh>open("< $file_or_fh" ) || return 0;
-
-		$basename = basename( $file_or_fh );
+	# They passed along a scalar, pointing to the path of the file
+	# So we need to open the file
+        open($fh,"<$file_or_fh"  ) || return 0;
+	$basename = basename( $file_or_fh );
     } 
     # We have a file handle.
     else {
-		$fh = $file_or_fh;
-
-        # bless the filehandle into the FileHandle package to make File::MMagic happy
-        bless $fh,  "FileHandle";
-		$basename = 'FILE';
+	$fh = $file_or_fh;
+	$basename = 'FILE';
     }
+
+    # Use FileHandle to make File::MMagic happy;
+    # bless the filehandle into the FileHandle package to make File::MMagic happy
+    require FileHandle;
+    bless $fh,  "FileHandle";
 
     # Check what headers the user has already set and 
     # don't override them. 
@@ -51,26 +47,31 @@ sub stream_file {
         require File::MMagic;
         my $magic = File::MMagic->new(); 
         my $mime_type = $magic->checktype_filehandle($fh);
-
+        
         # Set Default
         $mime_type ||= 'application/octet-stream';
 
         $self->header_add('-type' => $mime_type);
-
     }
 
-    unless ( $existing_headers{'-size'} ||  $existing_headers{'size'} ) {
-        $self->header_add('-size' => -s $fh);
+
+    unless ( $existing_headers{'Content_Length'} 
+        ||   $existing_headers{'-Content_Length'} 
+        ) {
+        $self->header_add('-Content_Length' => $size);
     }
 
     unless ( $existing_headers{'-attachment'} ||  $existing_headers{'attachment'} ) {
         $self->header_add('-attachment' => $basename);
     }
 
-	$self->header_type( 'none' );
+    $self->header_type( 'none' );
     print $self->query->header( $self->header_props() );
 
     # This reads in the file in $byte size chunks
+    my $first;
+    # File::MMagic may have read some of the file, so seek back to the beginning
+    seek($fh,0,0);
     while ( read( $fh, my $buffer, $bytes ) ) {
 		print $buffer;
     }
@@ -150,8 +151,8 @@ The size will be calculated and added to the headers as well.
 Again, you can set these explicitly if you want as well:
 
  $self->header_add(
-      -type		   =>	'text/plain',
-      -size		   =>	42, # bytes
+      -type		        =>	'text/plain',
+      -Content_Length	=>	42, # bytes
  );
 
 =head1 AUTHOR
