@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile
   (
    NAME        => 'CGI::Application::Plugin::Stream',
-   VERSION     => '2.01',
+   VERSION     => '2.02',
    PL_FILES    => {},
    INSTALLDIRS => 'site',
    PREREQ_PM   => {

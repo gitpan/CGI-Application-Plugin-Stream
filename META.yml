@@ -1,19 +1,15 @@
---- #YAML:1.0
-name: CGI-Application-Plugin-Stream
-version: 2.00
-license: perl
-distribution_type: module
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         CGI-Application-Plugin-Stream
+version:      2.02
+version_from: 
+installdirs:  site
 requires:
-  CGI::Application: 3.21
-  File::Basename: 1
-  File::MMagic: 0
-  FileHandle: 1.22
-  Test::More: 0
-recommends: {}
-build_requires: {}
-conflicts: {}
-provides:
-  CGI::Application::Plugin::Stream:
-    file: lib/CGI/Application/Plugin/Stream.pm
-    version: 2.00
-generated_by: Module::Build version 0.21
+    CGI::Application:              3.21
+    File::Basename:                1
+    File::MMagic:                  0
+    FileHandle:                    1.22
+    Test::More:                    0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17

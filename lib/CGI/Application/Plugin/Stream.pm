@@ -12,7 +12,7 @@ use vars (qw/@ISA @EXPORT_OK/);
 
 @EXPORT_OK = qw(stream_file);
 
-our $VERSION = '2.01';
+our $VERSION = '2.02';
 
 sub stream_file {
     my ( $self, $file_or_fh, $bytes ) = @_;
@@ -25,6 +25,8 @@ sub stream_file {
 	# They passed along a scalar, pointing to the path of the file
 	# So we need to open the file
         open($fh,"<$file_or_fh"  ) || return 0;
+	# Now let's go binmode (Thanks, William!)
+	binmode $fh;
 	$basename = basename( $file_or_fh );
     } 
     # We have a file handle.
@@ -174,7 +176,7 @@ L<perlvar/$E<verbar>>
 
 =head1 LICENSE
 
-Copyright (C) 2004 Jason Purdy, E<lt>Jason@Purdy.INFOE<gt>
+Copyright (C) 2004-2005 Jason Purdy, E<lt>Jason@Purdy.INFOE<gt>
 
 This library is free software. You can modify and or distribute it under the same terms as Perl itself.
 

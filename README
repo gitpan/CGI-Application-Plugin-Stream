@@ -78,7 +78,7 @@ SEE ALSO
     File::Basename, "$|" in perlvar
 
 LICENSE
-    Copyright (C) 2004 Jason Purdy, <Jason@Purdy.INFO>
+    Copyright (C) 2004-2005 Jason Purdy, <Jason@Purdy.INFO>
 
     This library is free software. You can modify and or distribute it under
     the same terms as Perl itself.
