@@ -1,5 +1,9 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.03  Sun Jul  3 22:13:00 2005
+    [BUG FIX]
+    - Patch - tolerates absence of File::MMagic (Thilo Phanz)
+
 2.02  Thu Jun 23 17:01:00 2005
     [BUG FIX]
     - Added a binmode line to address a problem on Windows (William McKee)

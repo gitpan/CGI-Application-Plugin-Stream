@@ -12,7 +12,7 @@ use vars (qw/@ISA @EXPORT_OK/);
 
 @EXPORT_OK = qw(stream_file);
 
-our $VERSION = '2.02';
+our $VERSION = '2.03';
 
 sub stream_file {
     my ( $self, $file_or_fh, $bytes ) = @_;
@@ -46,9 +46,14 @@ sub stream_file {
 
     # Check for a existing type header set with or without a hypheout a hyphen
     unless ( $existing_headers{'-type'} ||  $existing_headers{'type'} ) {
-        require File::MMagic;
-        my $magic = File::MMagic->new(); 
-        my $mime_type = $magic->checktype_filehandle($fh);
+    	my $mime_type;
+
+	eval {
+        	require File::MMagic;
+	        my $magic = File::MMagic->new(); 
+	        $mime_type = $magic->checktype_filehandle($fh);
+	};
+	warn "Failed to load File::MMagic module to determine mime type: $@" if $@;
         
         # Set Default
         $mime_type ||= 'application/octet-stream';
