@@ -1,15 +1,18 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         CGI-Application-Plugin-Stream
-version:      2.03
-version_from: 
-installdirs:  site
+---
+name: CGI-Application-Plugin-Stream
+version: 2.04
+author:
+  - Jason Purdy <Jason@Purdy.INFO>
+abstract: Plugin that adds file streaming support to CGI::Application
+license: perl
 requires:
-    CGI::Application:              3.21
-    File::Basename:                1
-    File::MMagic:                  0
-    FileHandle:                    1.22
-    Test::More:                    0
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
+  CGI::Application: 3.21
+  File::Basename: 1
+  File::MMagic: 0
+  FileHandle: 1.22
+  Test::More: 0
+provides:
+  CGI::Application::Plugin::Stream:
+    file: lib/CGI/Application/Plugin/Stream.pm
+    version: 2.04
+generated_by: Module::Build version 0.26

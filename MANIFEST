@@ -1,10 +1,10 @@
 Changes
 Build.PL
-Makefile.PL
-META.yml
 MANIFEST
-README
+META.yml
 lib/CGI/Application/Plugin/Stream.pm
 t/basic.t
 t/test_file_to_stream.txt
 t/lib/TieOut.pm
+t/02-pod.t
+t/03-pod_coverage.t

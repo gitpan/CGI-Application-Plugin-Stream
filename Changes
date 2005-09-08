@@ -1,5 +1,8 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.04  Thu Sep  8 11:52:34 EDT 2005
+    * Added test coverage for the PODs, to boost Kwalitee
+
 2.03  Sun Jul  3 22:13:00 2005
     [BUG FIX]
     - Patch - tolerates absence of File::MMagic (Thilo Phanz)
