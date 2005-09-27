@@ -1,5 +1,8 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.05  Tue Sep 27 14:39:41 EDT 2005
+    * Added README to MANIFEST (not sure how it got removed)
+
 2.04  Thu Sep  8 11:52:34 EDT 2005
     * Added test coverage for the PODs, to boost Kwalitee
 

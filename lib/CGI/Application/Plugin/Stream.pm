@@ -12,7 +12,7 @@ use vars (qw/@ISA @EXPORT_OK/);
 
 @EXPORT_OK = qw(stream_file);
 
-our $VERSION = '2.04';
+our $VERSION = '2.05';
 
 sub stream_file {
     my ( $self, $file_or_fh, $bytes ) = @_;

@@ -2,6 +2,7 @@ Changes
 Build.PL
 MANIFEST
 META.yml
+README
 lib/CGI/Application/Plugin/Stream.pm
 t/basic.t
 t/test_file_to_stream.txt
