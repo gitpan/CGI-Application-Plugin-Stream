@@ -12,7 +12,7 @@ use vars (qw/@ISA @EXPORT_OK/);
 
 @EXPORT_OK = qw(stream_file);
 
-our $VERSION = '2.05';
+our $VERSION = '2.06';
 
 sub stream_file {
     my ( $self, $file_or_fh, $bytes ) = @_;
@@ -22,17 +22,17 @@ sub stream_file {
 
     # If we have a file path
     if ( ref( \$file_or_fh ) eq 'SCALAR' ) {
-	# They passed along a scalar, pointing to the path of the file
-	# So we need to open the file
+        # They passed along a scalar, pointing to the path of the file
+        # So we need to open the file
         open($fh,"<$file_or_fh"  ) || return 0;
-	# Now let's go binmode (Thanks, William!)
-	binmode $fh;
-	$basename = basename( $file_or_fh );
+        # Now let's go binmode (Thanks, William!)
+        binmode $fh;
+        $basename = basename( $file_or_fh );
     } 
     # We have a file handle.
     else {
-	$fh = $file_or_fh;
-	$basename = 'FILE';
+        $fh = $file_or_fh;
+        $basename = 'FILE';
     }
 
     # Use FileHandle to make File::MMagic happy;
@@ -48,12 +48,12 @@ sub stream_file {
     unless ( $existing_headers{'-type'} ||  $existing_headers{'type'} ) {
     	my $mime_type;
 
-	eval {
-        	require File::MMagic;
-	        my $magic = File::MMagic->new(); 
-	        $mime_type = $magic->checktype_filehandle($fh);
-	};
-	warn "Failed to load File::MMagic module to determine mime type: $@" if $@;
+        eval {
+            require File::MMagic;
+            my $magic = File::MMagic->new(); 
+            $mime_type = $magic->checktype_filehandle($fh);
+        };
+        warn "Failed to load File::MMagic module to determine mime type: $@" if $@;
         
         # Set Default
         $mime_type ||= 'application/octet-stream';
@@ -68,7 +68,10 @@ sub stream_file {
         $self->header_add('-Content_Length' => $size);
     }
 
-    unless ( $existing_headers{'-attachment'} ||  $existing_headers{'attachment'} ) {
+    unless ( $existing_headers{'-attachment'}
+        ||   $existing_headers{'attachment'}
+        ||   grep( /-?content-disposition/i, keys %existing_headers )
+        ) {
         $self->header_add('-attachment' => $basename);
     }
 

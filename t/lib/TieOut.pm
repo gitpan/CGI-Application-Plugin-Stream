@@ -20,4 +20,8 @@ sub read {
 	return substr($$self, 0, length($$self), '');
 }
 
+# Thanks, Makio!
+sub FILENO { 1; }
+sub BINMODE { 1; }
+
 1;

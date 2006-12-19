@@ -1,5 +1,11 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.06  Tue Dec 19 09:04:18 EST 2006
+  * Testing library was missing some override functions
+    - Thanks, Makio Tsukamoto
+  * Minor whitespace issue
+  * Added content regex to header check
+
 2.05  Tue Sep 27 14:39:41 EDT 2005
     * Added README to MANIFEST (not sure how it got removed)
 
