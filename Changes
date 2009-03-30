@@ -1,11 +1,8 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
-3.00_1
-  * Turn on local auto-flushing automatically. (Mark Stosberg)
-  * New stream() method provides access to $@ if there is a problem,
-    and will invoke error_mode() automatically if no other error
-    handing is installed. (Mark Stosberg). 
-  * Included Makefile.PL in MANIFEST (RT #19525)
+2.10  Mon Mar 30 12:04:57 EDT 2009
+  * Added support for CGI_APP_RETURN_ONLY env. variable
+    - Thanks, Brad Bailey
 
 2.06  Tue Dec 19 09:04:18 EST 2006
   * Testing library was missing some override functions

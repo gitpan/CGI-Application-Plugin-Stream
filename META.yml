@@ -1,6 +1,6 @@
 ---
 name: CGI-Application-Plugin-Stream
-version: 3.00_1
+version: 2.10
 author:
   - 'Jason Purdy <Jason@Purdy.INFO>'
 abstract: Plugin that adds file streaming support to CGI::Application
@@ -14,5 +14,5 @@ requires:
 provides:
   CGI::Application::Plugin::Stream:
     file: lib/CGI/Application/Plugin/Stream.pm
-    version: 3.00_1
+    version: 2.10
 generated_by: Module::Build version 0.26
