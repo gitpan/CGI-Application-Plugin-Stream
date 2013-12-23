@@ -1,18 +1,27 @@
 ---
-name: CGI-Application-Plugin-Stream
-version: 2.10
+abstract: 'Plugin that adds file streaming support to CGI::Application'
 author:
   - 'Jason Purdy <Jason@Purdy.INFO>'
-abstract: Plugin that adds file streaming support to CGI::Application
+build_requires: {}
+configure_requires:
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110440'
 license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: CGI-Application-Plugin-Stream
+provides:
+  CGI::Application::Plugin::Stream:
+    file: lib/CGI/Application/Plugin/Stream.pm
+    version: 2.11
 requires:
   CGI::Application: 3.21
   File::Basename: 1
   File::MMagic: 0
   FileHandle: 1.22
   Test::More: 0
-provides:
-  CGI::Application::Plugin::Stream:
-    file: lib/CGI/Application/Plugin/Stream.pm
-    version: 2.10
-generated_by: Module::Build version 0.26
+resources:
+  license: http://dev.perl.org/licenses/
+version: 2.11

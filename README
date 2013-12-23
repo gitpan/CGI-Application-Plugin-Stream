@@ -1,3 +1,7 @@
+NAME
+    CGI::Application::Plugin::Stream - CGI::Application Plugin for streaming
+    files
+
 SYNOPSIS
       use CGI::Application::Plugin::Stream (qw/stream_file/);
 

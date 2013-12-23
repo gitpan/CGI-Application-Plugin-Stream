@@ -1,5 +1,10 @@
 Revision history for Perl extension CGI::Application::Plugin::Stream.
 
+2.11  Mon Dec 23 10:05:51 2013 -0500
+  * Fixed header hyphen prefix that was causing testing failures
+    - https://rt.cpan.org/Public/Bug/Display.html?id=81646
+    - Thanks, Niko Tyni
+
 2.10  Mon Mar 30 12:04:57 EDT 2009
   * Added support for CGI_APP_RETURN_ONLY env. variable
     - Thanks, Brad Bailey

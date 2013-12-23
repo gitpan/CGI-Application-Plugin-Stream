@@ -60,7 +60,7 @@ like($content_sent, qr/Content-Length: 29/i,$test_name);
 
 $test_name = 'Setting a custom Content-Length';
 $app = StreamTest->new();
-$app->header_props(Content_Length => 1 );
+$app->header_props(-Content_Length => 1 );
 $app->with_fh();
 $content_sent = $stdout->read;
 like($content_sent, qr/Content-Length: 1/i,$test_name);
